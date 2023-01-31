@@ -1,9 +1,31 @@
 using System;
+using System.Linq;
+
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 
 public static class Bob
 {
     public static string Response(string statement)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        _ = statement.Trim();
+        if (statement.IsEmpty())
+            return "Fine. Be that way!";
+        if (statement.IsQuestion() && statement.IsYelled())
+            return "Calm down, I know what I'm doing!";
+        if (statement.IsQuestion())
+            return "Sure.";
+        if (statement.IsYelled())
+            return "Whoa, chill out!";
+        return "Whatever.";
+
     }
+
+    public static bool IsQuestion(this string statement) =>
+        statement.Trim().EndsWith('?');
+
+    public static bool IsEmpty(this string statement) =>
+        string.IsNullOrWhiteSpace(statement);
+
+    public static bool IsYelled(this string statement) =>
+        statement.Any(char.IsLetter) && statement.ToUpperInvariant() == statement;
 }
