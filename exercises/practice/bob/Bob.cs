@@ -1,7 +1,4 @@
-using System;
 using System.Linq;
-
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 
 public static class Bob
 {
@@ -28,4 +25,6 @@ public static class Bob
 
     public static bool IsYelled(this string statement) =>
         statement.Any(char.IsLetter) && statement.ToUpperInvariant() == statement;
+
+
 }
